@@ -2,7 +2,7 @@ from numpy import matrix, matmul, hstack, shape
 
 def adaline(x_in, w, par=0):
 
-    m, n = shape(x_in)
+    m, _ = shape(x_in)
 
     if par:
         extra = matrix([1 for _ in range(m)]).transpose()

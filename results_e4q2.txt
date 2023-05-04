@@ -1,0 +1,21 @@
+Matriz de confusao de treinamento: 
+ 
+|    |   C1 |   C2 |
+|----+------+------|
+| C1 |  139 |    1 |
+| C2 |    0 |  140 |
+ 
+Acuracia de treinamento: 99.64%
+ 
+----------------------------------- 
+ 
+Matriz de confusao de testes: 
+ 
+|    |   C1 |   C2 |
+|----+------+------|
+| C1 |   57 |    3 |
+| C2 |    0 |   60 |
+ 
+Acuracia de testes: 97.50%
+
+

@@ -1,34 +1,37 @@
-from numpy import linspace, shape, meshgrid
+import numpy as np
+
+def perceptron(x, w, par):
+
+    m, _ = x.shape
+
+    if par:
+        extra = np.matrix([-1 for _ in range(m)]).transpose()
+        x = np.hstack((extra, x))
+
+    f = np.vectorize(lambda t: int(t >= 0))
+
+    return f(np.matmul(x, w))
 
 def visualizeSurface3D(w):
-    m, _ = shape(w)
-
-    if m != 3:
-        raise("Matriz de pesos não compatível")
-
+    
     w0, w1, w2 = map(float, w.transpose().tolist()[0])
 
-    x = linspace(0, 6, 100)
-    y = linspace(0, 6, 100)
+    x = np.linspace(0, 6, 100)
+    y = np.linspace(0, 6, 100)
 
-    X, Y = meshgrid(x, y)
+    X, Y = np.meshgrid(x, y)
 
-    f = lambda x, y: w1*x + w2*y - w0 >= 0
-        
+    f = lambda x, y: w1*x + w2*y - w0 >= 0        
 
     Z = f(X, Y)
 
     return X, Y, Z
 
 def visualizeSurface2D(w):
-    m, _ = shape(w)
-
-    if m != 3:
-        raise("Matriz de pesos não compatível")
-
+    
     w0, w1, w2 = map(float, w.transpose().tolist()[0])
 
-    x = linspace(0, 6, 100)
+    x = np.linspace(0, 6, 100)
 
     f = lambda x: -x*w1/w2 + w0/w2
 

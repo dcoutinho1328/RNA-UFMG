@@ -26,16 +26,17 @@ plt.figure()
 plt.plot(g1[:, 0], g1[:, 1], 'or')
 plt.plot(g2[:, 0], g2[:, 1], 'ob')
 plt.plot(x, y, '-m')
+plt.xlim((0, 6))
+plt.ylim((0, 6))
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-ax.scatter(g1[:, 0], g1[:, 1], g1[:, 2], color='red')
-ax.scatter(g2[:, 0], g2[:, 1], g1[:, 2], color="blue")
-
 x, y, z = visualizeSurface3D(w)
 
 ax.plot_surface(x, y, z)
+ax.scatter(g1[:, 0], g1[:, 1], g1[:, 2], color='red')
+ax.scatter(g2[:, 0], g2[:, 1], g1[:, 2], color="blue")
 
 plt.show()
 
