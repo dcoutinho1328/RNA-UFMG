@@ -11,22 +11,17 @@ def RBF(xin, m, covlist, w):
     N, n = xin.shape
     p = len(covlist)
 
-    H = []
+    H = np.zeros((N, p))
+    for j in range(N):
+        for i in range(p):
+            mi = m[i]
+            covi = covlist[i]
+            covi = np.array(covi).reshape(n,n) + 0.001*np.eye(n)
+            H[j, i] = grf(xin[j,:], mi, covi, n)
 
-    for i in range(N):
-        H.append([])
-        for j in range(p):
-            mi = m[j,]
-            covi = covlist[j]
-            covi = np.matrix(np.array(covlist[i]).reshape(-1, n), copy=False) + 0.001 * np.eye(n)
-            H[i].append(grf(xin[i,], mi, covi, n))
+    Haug = np.hstack((np.ones((N,1)), H))
 
-    H = np.matrix(H)
-
-    extra = np.matrix([1 for _ in range(H.shape[0])]).transpose()
-    H = np.hstack((extra, xin))
-
-    Yhat = np.dot(H, w)
+    Yhat = np.dot(Haug, w)
 
     return Yhat
 
